@@ -15,8 +15,10 @@
 			<span class="tag"><%= card.tags[j] %></span>
 			<% } %>
 		</div>
+		<% if(username !== "Guest" && isAuthor){ %>
 		<a href="/cards/<%= card.id %>/edit"><button>Edit</button></a>
 		<a href="/cards/<%= card.id %>/delete"><button>Delete</button></a>
+		<% } %>
 	</div>
 </body>
 </html>

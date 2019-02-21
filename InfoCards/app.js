@@ -2,6 +2,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var morgan  = require('morgan');
 
 var logger = require('morgan');
 var bcrypt = require('bcrypt');
@@ -37,6 +38,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(morgan('dev'))
 
 app.use(session({
   secret: 'sample session',

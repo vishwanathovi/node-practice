@@ -5,12 +5,13 @@ var Cards = require('../models/Cards');
 var Users = require('../models/Users');
 var Category = require('../models/Category');
 var Subcategory = require('../models/Subcategory');
+var authController = require('../controllers/auth');
 
 
 
 // Display Cards
 router.get('/', function(req, res, next) {
-
+//
 	// Creating a categoryTree
 	// var CategoryTree = {};
 	// Category.find({}).populate('subcategory','title').exec((err,categories)=>{
@@ -22,16 +23,30 @@ router.get('/', function(req, res, next) {
 
 	// 	console.log(CategoryTree)
 	// })
-
-
-	Cards.find({},(err,list)=>{
+//
+	Cards.find({}).populate({path:'subcategory', populate:{path: 'category'}}).exec((err,list)=>{
 	  	if (err){
 	  		console.log("Cards list fetch failed!");
 	  		res.end();
-	  	} 
-		res.render('index', { cardsList: list});
-		console.log("Cards fetch success!")
+	  	}
+	  	res.render('index', { cardsList: list});
+
 	})
+
+//
+	// Cards.find({},(err,list)=>{
+	//   	if (err){
+	//   		console.log("Cards list fetch failed!");
+	//   		res.end();
+	//   	} 
+	//   	Cards.findById(req.params.id).populate({path:'subcategory', populate:{path: 'category'}}).exec((err,card)=>{
+ //  			res.render('index', { cardsList: list});
+ //  		})
+
+
+	// 	res.render('index', { cardsList: list});
+	// 	console.log("Cards fetch success!")
+	// })
 
 	
 });
@@ -72,7 +87,8 @@ router.get('/:id',function(req,res,next){
 			console.log(err);
 			res.end();
 		} else {
-			res.render('card',{'card':card})
+			let isAuthor = authController.isAuthor(req,res,card);
+			res.render('card',{'card':card, 'isAuthor': isAuthor});
 		}
 	});
 	
@@ -81,15 +97,33 @@ router.get('/:id',function(req,res,next){
 
 // Handle edit on the new page
 router.get('/:id/edit/', function(req, res, next) {
-  Cards.findById(req.params.id,(err,card)=>{
-  	if (err){
-  		console.log("Card list fetch failed!");
-  	} 
-  		console.log(card)
-	  res.render('edit', {card: card });
-		console.log("Data updated")
+// 
+  // Cards.findById(req.params.id,(err,card)=>{
+  // 	if (err){
+  // 		console.log("Card list fetch failed!");
+  // 	} 
+
+		// res.render('edit', {card: card });
+		// console.log("Data updated")
+  // 	})
+
+  // Cards.findById(req.params.id)
+  // 	.then(card=>{
+  // 		let otherDetails = {}
+  // 		Subcategory.findById(card.subcategory, (err,subcat)=>{
+  // 			otherDetails.subcategory = subcat.title;
+  // 			Category.findById(subcat.category,(err,cat)=>{
+  // 				console.log(cat.title)
+  // 				otherDetails.category = cat.title;
+  // 				res.render('edit', {card: card, other: otherDetails });
+  // 			})
+  // 		})
+  // 	})
+//
+  	Cards.findById(req.params.id).populate({path:'subcategory', populate:{path: 'category'}}).exec((err,card)=>{
+  		res.render('edit', {card: card});
   	})
-	// res.redirect('/cards');
+
 });
 
 

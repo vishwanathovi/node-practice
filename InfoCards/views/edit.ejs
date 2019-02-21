@@ -5,7 +5,7 @@
 	<link rel='stylesheet' href='/stylesheets/style.css' />
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
-</head>
+</head> 
 <body>
 	<% include ./head %>
 	<div class="wrapper">
@@ -19,9 +19,17 @@
 				<br>
 				<label>Tags</label><input type="text" name="tags"  class="add-tags" placeholder="comma seperated, maximum three" value="<%= card.tags %>">
 				<br>
+				Category
+				<select name="category" class="category-select"></select>
+				SubCategory
+				<select name="subcategory" class="subcategory-select">
+					<option value="">Select a category</option>
+				</select>
+				<br>
 				<button type="submit">Add</button>
 			</form>
 		</div>
 	</div>
+	<script src="./../../javascripts/main.js"></script>
 </body>
 </html>

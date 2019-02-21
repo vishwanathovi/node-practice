@@ -6,5 +6,10 @@ module.exports = {
 			res.locals.username = req.session.username;
 		}
 		next();
+	},
+	isAuthor: function (req,res, card){
+		if (req.session) return req.session.userid==card.author;
+		return false;
 	}
+
 }
