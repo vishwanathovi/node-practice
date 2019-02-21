@@ -1,7 +1,7 @@
 # Association:
-1. Store the data in the public folder - In a file
-2. Show the category and subcategory in the card forms
-3. Associate the card data with subcategory 
+1. Store the data in the public folder - In a file - done
+2. Show the category and subcategory in the card forms - done
+3. Associate the card data with subcategory - done
 
 
 # Auth based access:

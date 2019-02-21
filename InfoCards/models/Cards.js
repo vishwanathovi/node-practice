@@ -5,7 +5,8 @@ var CardsSchema = new mongoose.Schema({
 	content: {type: String, required: [true, "can't be blank"]},
 	likes: Number,
 	tags:[String],
-	author: {type:mongoose.Schema.Types.ObjectId, ref:"Users"}
+	author: {type:mongoose.Schema.Types.ObjectId, ref:"Users"},
+	subcategory: {type:mongoose.Schema.Types.ObjectId, ref:"Subcategory"}
 },{timestamps: true});
 
 module.exports = mongoose.model('Cards',CardsSchema);

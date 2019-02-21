@@ -11,42 +11,26 @@ var Subcategory = require('../models/Subcategory');
 // Display Cards
 router.get('/', function(req, res, next) {
 
-
-	// Category.create({title:'javascript',subcategory:[]},err=>console.log(err))
-
-	// Category.findOne({title:'javascript'},(err,cat)=>{
-	// 	if(err) return console.log(err);
-	// 	Subcategory.create({title:'node', category: cat.id, cards:[]})
-	// })
-	// Subcategory.findOne({title:'node'},(err,subcat)=>{
-	// 	Category.findOneAndUpdate({title:'javascript'}, {$push:{subcategory:subcat.id}}, (err,user)=>{
-	// 		console.log(err)
-	// 	})
-	// })
-
-	// Category.findOne({title:'javascript'}, (err,cat)=>{
-	// 	Subcategory.updateMany({},{category:cat.id},{multi: true}, err=>console.log(err))
-	// })
-
 	// Creating a categoryTree
-	var CategoryTree = {};
-	Category.find({}).populate('subcategory','title').exec((err,categories)=>{
-		// console.log(category[0])
-		categories.forEach(category=>{
-			CategoryTree[category.title]=[];
-			category.subcategory.forEach(subcat=>CategoryTree[category.title].push(subcat))
-		})
+	// var CategoryTree = {};
+	// Category.find({}).populate('subcategory','title').exec((err,categories)=>{
+	// 	// console.log(category[0])
+	// 	categories.forEach(category=>{
+	// 		CategoryTree[category.title]=[];
+	// 		category.subcategory.forEach(subcat=>CategoryTree[category.title].push(subcat))
+	// 	})
 
-		console.log(CategoryTree)
+	// 	console.log(CategoryTree)
+	// })
 
-		Cards.find({},(err,list)=>{
-		  	if (err){
-		  		console.log("Cards list fetch failed!");
-		  		res.end();
-		  	} 
-			res.render('index', { cardsList: list, category:CategoryTree});
-			console.log("Cards fetch success!")
-		})
+
+	Cards.find({},(err,list)=>{
+	  	if (err){
+	  		console.log("Cards list fetch failed!");
+	  		res.end();
+	  	} 
+		res.render('index', { cardsList: list});
+		console.log("Cards fetch success!")
 	})
 
 	
@@ -61,12 +45,22 @@ router.get('/add',function(req,res,next){
 router.post('/add/new',function(req,res,next){
 	req.body.tags = req.body.tags.split(',');
 	req.body.author = req.session.userid || 'sampleID';
-	Cards.create(req.body, (err,card)=>{
-		if(err) return console.log(err)
-		Users.findOneAndUpdate({_id:card.author},{$push:{cards: card.id}}, (err,user)=>{
-			console.log(err)
+	Subcategory.findOne({title:req.body.subcategory},(err,subcat)=>{
+		req.body.subcategory = subcat.id;
+		
+		Cards.create(req.body, (err,card)=>{
+			if(err) return console.log(err)
+			Users.findOneAndUpdate({_id:card.author},{$push:{cards: card.id}}, (err,user)=>{
+				console.log(err)
+			})
+
+			Subcategory.findOneAndUpdate({_id: subcat.id}, {$push: {cards: card.id}}, (err,subcat2)=>{
+				console.log(err)
+			})
 		})
+
 	})
+	
 	res.redirect('/cards');
 })
 

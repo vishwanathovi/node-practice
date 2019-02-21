@@ -1,6 +1,6 @@
 // Create a function to display the categories - done
-// Add category and subcategory in the card addition
-// Link subcategory with card schema in the db
+// Add category and subcategory in the card addition - done
+// Link subcategory with card schema in the db - done
 
 
 // Cards page
@@ -35,14 +35,32 @@ if(document.querySelector('.categories')){
 //  Add cards page
 
 function createCategoryOptions(selectMenu){
+  selectMenu.innerHTML+="<option value=''>Select</option>"
 	for (key in categoryTree){
 		selectMenu.innerHTML+= `<option value="${key}">${key}</option>`;
 	}
 }
 
-console.log("adfds")
+function updateSubcategory(category, selectMenu){
+  selectMenu.innerHTML = "";
+  if (!category){
+    selectMenu.innerHTML+="<option value=''>Select a category</option>";
+  } else {
+    for(item of categoryTree[category]){
+      selectMenu.innerHTML+=`<option value="${item}">${item}</option>`;
+    }
+  }
+}
+
 
 if (document.querySelector('.category-select')){
 	let categorySelect = document.querySelector('.category-select');
 	createCategoryOptions(categorySelect);
+
+  document.querySelector('.category-select').onchange = () => {
+    let subcategorySelect = document.querySelector('.subcategory-select');
+    selectedCategory = document.querySelector('.category-select').value;
+    updateSubcategory(selectedCategory, subcategorySelect);
+  };
+
 }
