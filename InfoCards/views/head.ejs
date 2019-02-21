@@ -1,0 +1,14 @@
+	<header>
+		<div class="logo"> <a href="/cards">InfoCards</a></div>
+		<div class="top-right">
+			<% if(username !== "Guest"){ %>
+				<a href="/cards/add"><button>Add new card</button></a>
+			<% } %>
+			<div class="welcome-msg">Hello! Welcome, <span class="username-header"><%= username %></span>!</div>
+			<% if(username !== "Guest"){ %>
+				<a href="/users/logout"><button>Log out</button></a>
+			<% } else { %>
+				<div class="profile"><a href="/users/login"><button>Log-in</button></a></div>
+			<% }%>
+		</div>
+	</header>

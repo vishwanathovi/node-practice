@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+</head>
+<body>
+	<% include ./head %>
+	<div class="wrapper">
+		<h5>Learn something new everyday!</h5>
+		<div class="categories">
+			
+		</div>
+		<div class="cards">
+			<% for(var i=0; i < cardsList.length; i++) { %>
+			<div class="card"><a href="/cards/<%= cardsList[i].id %>">
+				<h5><%= cardsList[i].title %></h5>
+				<p class="card-content"><%= cardsList[i].content %></p></a>
+				<div class="card-footer">
+					<div class="card-footer-icons">
+						<i class="far fa-edit"></i>
+						<i class="far fa-heart"></i>
+					</div>
+					<div class="tags">
+						<% for(var j=0; j < cardsList[i].tags.length; j++) { %>
+						<span class="tag"><%= cardsList[i].tags[j] %></span>
+						<% } %>
+					</div>
+				</div>
+			</div>
+			<% } %>
+		</div>
+	</div>
+	<script src="./javascripts/main.js"></script>
+</body>
+</html>
+

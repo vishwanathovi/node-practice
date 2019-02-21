@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+</head>
+<body>
+	<% include ./head %>
+	<div class="wrapper">
+		<h5>Please Register:</h5>
+		<form action="/users/register" method="POST">
+			<label>Name: *</label>
+			<input type="text" name="username" class="username" required>
+			<label>Email: *</label>
+			<input type="email" name="email" class="email">
+			<label>Password</label>
+			<input name="password" type="text" class="password" required>
+			<br>
+			<button type="submit">Add</button>
+		</form>
+		<span>Already a User? </span><a class="login-anchor" href="/users/login">Login</a>
+	</div>
+</body>
+</html>

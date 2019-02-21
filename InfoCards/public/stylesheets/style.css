@@ -1,0 +1,181 @@
+ /* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Custom CSS*/
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+header{
+	display: flex;
+	justify-content: space-between;
+	background: #ccc;
+	height: 50px;
+	-ms-align-items: center;
+	align-items: center;
+	padding:0px 10px;
+}
+
+.username-header{
+	text-transform: capitalize;
+}
+
+.top-right{
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+}
+
+.top-right>*{
+	vertical-align: middle;
+	margin:0 10px ;
+}
+
+.top-right button{
+	margin: 0;
+}
+
+
+
+.wrapper{
+	max-width: 960px;
+	margin: 0 auto;
+}
+
+a {
+  color: #333 !important;
+  text-decoration: none !important;
+}
+
+.card{
+	border: 1px solid black;
+	margin:10px;
+	padding: 20px;
+}
+
+
+
+
+.add-title{
+	width: 60%;
+}
+
+.add-content{
+	width: 60%;
+	height: 300px;
+}
+
+.add-tags{
+	width: 60%;
+}
+
+.card-content {
+	white-space: pre-line;
+}
+
+.cards .card-content{
+	overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   line-height: 16px;     /* fallback */
+   max-height: 92px;      /* fallback */
+   -webkit-line-clamp: 5; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+
+.cards{
+	display: grid;
+	/*grid-template-columns: repeat(auto-fill,minmax(1fr,300px));*/
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.card-footer{
+	display: flex;
+	justify-content: space-between;
+}
+
+.tag{
+	background: #ddd;
+	padding:5px;
+	border-radius: 2px;
+	font-style: italic;
+}
+
+li{
+	padding-left:10px;
+	text-transform: capitalize;
+}
+
+
+/*------------------------------------------------*/
+/*-------------- Add user file   -----------------*/
+/*------------------------------------------------*/
+
+
+
+/*------------------------------------------------*/
+/*-------------- Login page      -----------------*/
+/*------------------------------------------------*/
+
+.register-anchor{
+	text-decoration: underline !important;
+}
+
+
+.login-anchor{
+	text-decoration: underline !important;
+}
+
+/* Todos:
+
+Create proper header
+Improve the card formatting
+
+

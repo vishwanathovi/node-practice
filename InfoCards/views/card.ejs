@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+</head>
+<body>
+	<% include ./head %>
+	<div class="wrapper">
+		<h3><%= card.title %></h3>
+		<p class="card-content"><%= card.content %></p>
+		<div class="tags">
+			<% for(var j=0; j < card.tags.length; j++) { %>
+			<span class="tag"><%= card.tags[j] %></span>
+			<% } %>
+		</div>
+		<a href="/cards/<%= card.id %>/edit"><button>Edit</button></a>
+		<a href="/cards/<%= card.id %>/delete"><button>Delete</button></a>
+	</div>
+</body>
+</html>
